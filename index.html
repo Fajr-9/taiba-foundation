@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="مؤسسة خيرية تزرع الأمل وتبني الإنسان" data-i18n="meta-description">
+    <title data-i18n="page-title">مؤسسة طيبة - نزرع الأمل.. نبني الإنسان</title>
+    
+    <!-- Google Fonts - Cairo for Arabic, Inter for English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="lang.js" defer></script>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="logo-img">
+                    </a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link" data-i18n="nav-home">الصفحة الرئيسية</a></li>
+                        <li><a href="about.html" class="nav-link" data-i18n="nav-about">من نحن</a></li>
+                        <li><a href="completed.html" class="nav-link" data-i18n="nav-completed">مشاريع منجزة</a></li>
+                        <li><a href="ongoing.html" class="nav-link" data-i18n="nav-ongoing">مشاريع قيد الإنجاز</a></li>
+                        <li><a href="stories.html" class="nav-link" data-i18n="nav-stories">قصص الأمل</a></li>
+                        <li><a href="contact.html" class="nav-link" data-i18n="nav-contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+                <button id="lang-toggle" class="lang-toggle" onclick="toggleLanguage()">EN</button>
+                <button class="mobile-menu-toggle" data-i18n-aria="mobile-menu" aria-label="قائمة التنقل">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-image">
+                <div class="hero-image-overlay"></div>
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200" data-i18n-alt="img-hero-alt" alt="طفل سعيد" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221200%22 height=%22800%22%3E%3Crect fill=%22%23EAF4EF%22 width=%221200%22 height=%22800%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2248%22 fill=%22%232F7D5A%22%3Eمؤسسة طيبة الخير%3C/text%3E%3C/svg%3E'">
+            </div>
+            <div class="hero-content">
+                <h2 class="hero-title fade-up" data-i18n="hero-title">نزرع الأمل.. نبني الإنسان</h2>
+                <p class="hero-description fade-up" data-i18n="hero-description">
+                    في كل يوم، نعمل على بناء مستقبل أفضل للأطفال والأسر المحتاجة. 
+                    من خلال برامجنا المتنوعة، نساهم في تغيير حياة آلاف الأشخاص 
+                    ونزرع بذور الأمل في قلوبهم.
+                </p>
+                <div class="hero-cta fade-up">
+                    <a href="about.html" class="btn btn-primary btn-large" data-i18n="hero-cta-primary">اعرف أكثر</a>
+                    <a href="stories.html" class="btn btn-secondary btn-large" data-i18n="hero-cta-secondary">قصص الأمل</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT STORIES SECTION -->
+    <section class="stories" id="stories">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2 class="section-title" data-i18n="stories-title">قصص الأمل</h2>
+                <p class="section-subtitle" data-i18n="stories-subtitle">
+                    قصص حقيقية عن التغيير الإيجابي الذي نحققه معاً. كل مساهمة تترك أثراً 
+                    إيجابياً في حياة شخص يحتاج إلى يد العون.
+                </p>
+            </div>
+            <div class="stories-grid">
+                <div class="story-card fade-up">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600" data-i18n-alt="img-education-alt" alt="تعليم الأطفال" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%236FAF8E%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eبرنامج التعليم%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="story-content">
+                        <h3 class="story-title" data-i18n="story-education-title">برنامج التعليم</h3>
+                        <p class="story-description" data-i18n="story-education-desc">
+                            نساعد الأطفال على الوصول إلى التعليم الجيد من خلال توفير 
+                            المواد الدراسية والمنح التعليمية.
+                        </p>
+                        <div class="story-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="75"></div>
+                            </div>
+                            <span class="progress-text">75% <span data-i18n="story-education-progress">من الهدف</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card fade-up">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600" data-i18n-alt="img-family-alt" alt="مساعدة الأسر" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%231BA098%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eدعم الأسر%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="story-content">
+                        <h3 class="story-title" data-i18n="story-family-title">دعم الأسر</h3>
+                        <p class="story-description" data-i18n="story-family-desc">
+                            نقدم المساعدة الغذائية والدعم المالي للأسر المحتاجة لمساعدتهم 
+                            على تخطي الأوقات الصعبة.
+                        </p>
+                        <div class="story-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="60"></div>
+                            </div>
+                            <span class="progress-text">60% <span data-i18n="story-education-progress">من الهدف</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-card fade-up">
+                    <div class="story-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600" data-i18n-alt="img-health-alt" alt="الرعاية الصحية" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%237CB342%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eالرعاية الصحية%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="story-content">
+                        <h3 class="story-title" data-i18n="story-health-title">الرعاية الصحية</h3>
+                        <p class="story-description" data-i18n="story-health-desc">
+                            نضمن وصول الرعاية الصحية الأساسية للمحتاجين من خلال 
+                            العيادات المتنقلة والفحوصات المجانية.
+                        </p>
+                        <div class="story-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" data-progress="85"></div>
+                            </div>
+                            <span class="progress-text">85% <span data-i18n="story-education-progress">من الهدف</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTICS SECTION -->
+    <section class="statistics">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item fade-up">
+                    <div class="stat-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number" data-target="120000">0</div>
+                    <div class="stat-label" data-i18n="stat-beneficiaries">مستفيد</div>
+                </div>
+                <div class="stat-item fade-up">
+                    <div class="stat-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label" data-i18n="stat-volunteers">متطوع</div>
+                </div>
+                <div class="stat-item fade-up">
+                    <div class="stat-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label" data-i18n="stat-years">سنة من العطاء</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION SECTION -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content fade-up">
+                <h2 class="cta-title" data-i18n="cta-title">ساهم معنا، نزرع الأمل</h2>
+                <p class="cta-description" data-i18n="cta-description">
+                    انضم إلينا في رحلتنا لزرع الأمل وبناء الإنسان. معاً يمكننا إحداث فرق حقيقي في حياة آلاف الأشخاص.
+                </p>
+                <a href="about.html" class="btn btn-primary btn-large btn-cta" data-i18n="cta-button">اعرف أكثر</a>
+            </div>
+            <div class="cta-pattern"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="footer-logo-img">
+                    </div>
+                    <p class="footer-mission" data-i18n="footer-mission">
+                        مؤسسة خيرية تعمل على زرع الأمل وبناء الإنسان من خلال 
+                        برامج متنوعة تركز على التعليم والصحة ودعم الأسر المحتاجة.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title" data-i18n="footer-quick-links">روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" data-i18n="nav-home">الصفحة الرئيسية</a></li>
+                        <li><a href="about.html" data-i18n="nav-about">من نحن</a></li>
+                        <li><a href="completed.html" data-i18n="nav-completed">مشاريع منجزة</a></li>
+                        <li><a href="ongoing.html" data-i18n="nav-ongoing">مشاريع قيد الإنجاز</a></li>
+                        <li><a href="stories.html" data-i18n="nav-stories">قصص الأمل</a></li>
+                        <li><a href="contact.html" data-i18n="nav-contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title" data-i18n="footer-follow">تابعنا</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" data-i18n-aria="social-facebook" aria-label="فيسبوك">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" data-i18n-aria="social-twitter" aria-label="تويتر">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" data-i18n-aria="social-instagram" aria-label="إنستغرام">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="white"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 <span data-i18n="footer-foundation">مؤسسة طيبة</span>. <span data-i18n="footer-copyright">جميع الحقوق محفوظة.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('lang') || 'ar';
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+            setLanguage(newLang);
+        }
+    </script>
+</body>
+</html>

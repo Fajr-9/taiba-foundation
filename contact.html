@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="اتصل بنا - مؤسسة طيبة">
+    <title>اتصل بنا - مؤسسة طيبة</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="lang.js" defer></script>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="logo-img">
+                    </a>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link" data-i18n="nav-home">الصفحة الرئيسية</a></li>
+                        <li><a href="about.html" class="nav-link" data-i18n="nav-about">من نحن</a></li>
+                        <li><a href="completed.html" class="nav-link" data-i18n="nav-completed">مشاريع منجزة</a></li>
+                        <li><a href="ongoing.html" class="nav-link" data-i18n="nav-ongoing">مشاريع قيد الإنجاز</a></li>
+                        <li><a href="stories.html" class="nav-link" data-i18n="nav-stories">قصص الأمل</a></li>
+                        <li><a href="contact.html" class="nav-link active" data-i18n="nav-contact">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+                <button id="lang-toggle" class="lang-toggle" onclick="toggleLanguage()">EN</button>
+                <button class="mobile-menu-toggle" data-i18n-aria="mobile-menu" aria-label="قائمة التنقل">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero-image">
+            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1600" alt="اتصل بنا" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221600%22 height=%22400%22%3E%3Crect fill=%22%23EAF4EF%22 width=%221600%22 height=%22400%22/%3E%3C/svg%3E'">
+            <div class="page-hero-overlay"></div>
+        </div>
+        <div class="container">
+            <h1 class="page-title fade-up" data-i18n="page-contact-title">اتصل بنا</h1>
+            <p class="page-subtitle fade-up" data-i18n="contact-subtitle">نحن هنا للإجابة على استفساراتك</p>
+        </div>
+    </section>
+
+    <!-- CONTACT CONTENT -->
+    <section class="page-content">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info fade-up">
+                    <h2 data-i18n="contact-info">معلومات التواصل</h2>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h3 data-i18n="contact-email">البريد الإلكتروني</h3>
+                            <p>info@tayba.org</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h3 data-i18n="contact-phone">الهاتف</h3>
+                            <p>+123 456 7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h3 data-i18n="contact-address">العنوان</h3>
+                            <p><span data-i18n="contact-address-text">شارع الخير، بناء الأمل</span><br><span data-i18n="contact-address-text-line2">المدينة، البلد</span></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div>
+                            <h3 data-i18n="contact-hours">ساعات العمل</h3>
+                            <p><span data-i18n="contact-hours-text">الأحد - الخميس: 9:00 ص - 5:00 م</span><br><span data-i18n="contact-hours-text-line2">الجمعة - السبت: مغلق</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper fade-up">
+                    <h2 data-i18n="contact-form-title">أرسل لنا رسالة</h2>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" data-i18n="contact-name">الاسم</label>
+                            <input type="text" id="name" name="name" data-i18n-placeholder="contact-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-i18n="contact-email">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" data-i18n-placeholder="contact-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" data-i18n="contact-subject">الموضوع</label>
+                            <input type="text" id="subject" name="subject" data-i18n-placeholder="contact-subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-i18n="contact-message">الرسالة</label>
+                            <textarea id="message" name="message" rows="6" data-i18n-placeholder="contact-message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large" data-i18n="contact-send">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="footer-logo-img">
+                    </div>
+                    <p class="footer-mission" data-i18n="footer-mission">
+                        مؤسسة خيرية تعمل على زرع الأمل وبناء الإنسان من خلال 
+                        برامج متنوعة تركز على التعليم والصحة ودعم الأسر المحتاجة.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title" data-i18n="footer-quick-links">روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" data-i18n="nav-home">الصفحة الرئيسية</a></li>
+                        <li><a href="about.html" data-i18n="nav-about">من نحن</a></li>
+                        <li><a href="completed.html" data-i18n="nav-completed">مشاريع منجزة</a></li>
+                        <li><a href="ongoing.html" data-i18n="nav-ongoing">مشاريع قيد الإنجاز</a></li>
+                        <li><a href="stories.html" data-i18n="nav-stories">قصص الأمل</a></li>
+                        <li><a href="contact.html" data-i18n="nav-contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-title" data-i18n="footer-follow">تابعنا</h4>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" data-i18n-aria="social-facebook" aria-label="فيسبوك">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" data-i18n-aria="social-twitter" aria-label="تويتر">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" data-i18n-aria="social-instagram" aria-label="إنستغرام">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" fill="white"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 <span data-i18n="footer-foundation">مؤسسة طيبة</span>. <span data-i18n="footer-copyright">جميع الحقوق محفوظة.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('lang') || 'ar';
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+            setLanguage(newLang);
+        }
+        
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const currentLang = localStorage.getItem('lang') || 'ar';
+            const successMsg = currentLang === 'ar' ? 'شكراً لك! سنتواصل معك قريباً.' : 'Thank you! We will contact you soon.';
+            alert(successMsg);
+            this.reset();
+        });
+    </script>
+</body>
+</html>

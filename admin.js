@@ -113,7 +113,14 @@ async function loadProjects() {
             
             if (response.ok) {
                 const data = await response.json();
-                const content = atob(data.content.replace(/\s/g, ''));
+                // Fix encoding for Arabic characters
+                const base64Content = data.content.replace(/\s/g, '');
+                const binaryString = atob(base64Content);
+                const bytes = new Uint8Array(binaryString.length);
+                for (let i = 0; i < binaryString.length; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
+                }
+                const content = new TextDecoder('utf-8').decode(bytes);
                 projects = JSON.parse(content);
                 renderProjects();
                 return;
@@ -169,9 +176,15 @@ async function saveProjects() {
             sha = data.sha;
         }
         
-        // Prepare file content
+        // Prepare file content with proper UTF-8 encoding
         const content = JSON.stringify(projects, null, 2);
-        const encodedContent = btoa(unescape(encodeURIComponent(content)));
+        // Convert to UTF-8 bytes then to base64
+        const utf8Bytes = new TextEncoder().encode(content);
+        let binaryString = '';
+        for (let i = 0; i < utf8Bytes.length; i++) {
+            binaryString += String.fromCharCode(utf8Bytes[i]);
+        }
+        const encodedContent = btoa(binaryString);
         
         // Update file
         const updateUrl = `https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}/contents/projects.json`;

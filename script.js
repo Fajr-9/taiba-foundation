@@ -128,6 +128,13 @@ function toEnglishDigits(num) {
     });
 }
 
+// Make functions globally available
+window.arabicDigits = arabicDigits;
+window.englishDigits = englishDigits;
+window.isArabic = isArabic;
+window.toArabicDigits = toArabicDigits;
+window.toEnglishDigits = toEnglishDigits;
+
 // Format number with + sign and locale formatting
 function formatNumber(num) {
     let formatted;

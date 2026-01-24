@@ -10,43 +10,22 @@ let allProjects = {
 
 // ============================================
 // NUMBER CONVERSION (Arabic/English)
+// Uses functions from script.js (loaded before this file)
 // ============================================
 
-// Arabic digits: ٠١٢٣٤٥٦٧٨٩
-const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-const englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
-// Check if current language is Arabic
-function isArabic() {
-    return document.documentElement.dir === 'rtl' || 
-           document.documentElement.lang === 'ar' ||
-           document.querySelector('html[dir="rtl"]') !== null;
-}
-
-// Convert number to Arabic digits
-function toArabicDigits(num) {
-    if (typeof num === 'number') {
-        num = num.toString();
-    }
-    return num.replace(/\d/g, (digit) => arabicDigits[parseInt(digit)]);
-}
-
-// Convert number to English digits
-function toEnglishDigits(num) {
-    if (typeof num === 'number') {
-        num = num.toString();
-    }
-    return num.replace(/[٠١٢٣٤٥٦٧٨٩]/g, (digit) => {
-        const index = arabicDigits.indexOf(digit);
-        return index !== -1 ? englishDigits[index] : digit;
-    });
-}
-
-// Convert number based on current language
-function formatNumber(num) {
+// Format number without + sign (for projects)
+// Uses toArabicDigits and toEnglishDigits from script.js
+function formatProjectNumber(num) {
     if (num === null || num === undefined) return '';
     const numStr = num.toString();
-    return isArabic() ? toArabicDigits(numStr) : toEnglishDigits(numStr);
+    
+    // Use functions from script.js if available
+    if (typeof window.toArabicDigits === 'function' && typeof window.toEnglishDigits === 'function' && typeof window.isArabic === 'function') {
+        return window.isArabic() ? window.toArabicDigits(numStr) : window.toEnglishDigits(numStr);
+    }
+    
+    // Fallback if script.js not loaded
+    return numStr;
 }
 
 // Load projects from JSON file
@@ -130,7 +109,7 @@ function createOngoingProjectCard(project) {
                 <div class="progress-bar">
                     <div class="progress-fill" data-progress="${project.progress || 0}"></div>
                 </div>
-                <span class="progress-text">${formatNumber(project.progress || 0)}% <span data-i18n="project-library-progress">من الإنجاز</span></span>
+                <span class="progress-text">${formatProjectNumber(project.progress || 0)}% <span data-i18n="project-library-progress">من الإنجاز</span></span>
             </div>
         </div>
     `;
@@ -149,7 +128,7 @@ function createCompletedProjectCard(project) {
         statsHTML = '<div class="project-stats">';
         statsEntries.forEach(([label, value]) => {
             // Format numbers in stats value
-            const formattedValue = formatNumber(value);
+            const formattedValue = formatProjectNumber(value);
             statsHTML += `
                 <div class="stat">
                     <strong>${formattedValue}</strong>

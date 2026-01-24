@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
-    <script src="lang.js" defer></script>
+    <script src="lang.js"></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -20,8 +20,9 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="logo-img">
+                        <img src="assets/logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="logo-img">
                     </a>
+                    <a href="admin.html" class="admin-link" style="display: block; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; transition: var(--transition);">إدارة</a>
                 </div>
                 <nav class="nav">
                     <ul class="nav-list">
@@ -33,7 +34,7 @@
                         <li><a href="contact.html" class="nav-link" data-i18n="nav-contact">اتصل بنا</a></li>
                     </ul>
                 </nav>
-                <button id="lang-toggle" class="lang-toggle" onclick="toggleLanguage()">EN</button>
+                <button id="lang-toggle" class="lang-toggle">EN</button>
                 <button class="mobile-menu-toggle" data-i18n-aria="mobile-menu" aria-label="قائمة التنقل">
                     <span></span>
                     <span></span>
@@ -43,15 +44,17 @@
         </div>
     </header>
 
-    <!-- PAGE HERO -->
-    <section class="page-hero">
-        <div class="page-hero-image">
-            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600" alt="قصص الأمل" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221600%22 height=%22400%22%3E%3Crect fill=%22%23EAF4EF%22 width=%221600%22 height=%22400%22/%3E%3C/svg%3E'">
-            <div class="page-hero-overlay"></div>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-image">
+            <div class="hero-image-overlay"></div>
+            <img src="assets/Img/Bg1.png" alt="قصص الأمل" loading="lazy">
         </div>
-        <div class="container">
-            <h1 class="page-title fade-up" data-i18n="page-stories-title">قصص الأمل</h1>
-            <p class="page-subtitle fade-up" data-i18n="stories-subtitle-page">قصص حقيقية عن التغيير الإيجابي الذي نحققه معاً</p>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title fade-up" data-i18n="page-stories-title">قصص الأمل</h1>
+                <p class="hero-description fade-up" data-i18n="stories-subtitle-page">قصص حقيقية عن التغيير الإيجابي الذي نحققه معاً</p>
+            </div>
         </div>
     </section>
 
@@ -61,7 +64,7 @@
             <div class="stories-list">
                 <article class="story-article fade-up">
                     <div class="story-article-image">
-                        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600" alt="قصة أحمد" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%232F7D5A%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eقصة أحمد%3C/text%3E%3C/svg%3E'">
+                        <img src="assets/Img/Bg2.png" alt="قصة أحمد" loading="lazy">
                     </div>
                     <div class="story-article-content">
                         <h2 data-i18n="story-ahmed-title">قصة أحمد: من الشارع إلى الجامعة</h2>
@@ -81,7 +84,7 @@
 
                 <article class="story-article fade-up">
                     <div class="story-article-image">
-                        <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600" alt="قصة فاطمة" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%236FAF8E%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eقصة فاطمة%3C/text%3E%3C/svg%3E'">
+                        <img src="assets/Img/Bg3.png" alt="قصة فاطمة" loading="lazy">
                     </div>
                     <div class="story-article-content">
                         <h2 data-i18n="story-fatima-title">قصة فاطمة: من اليأس إلى النجاح</h2>
@@ -100,7 +103,7 @@
 
                 <article class="story-article fade-up">
                     <div class="story-article-image">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600" alt="قصة عائلة محمد" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%231BA098%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eقصة عائلة محمد%3C/text%3E%3C/svg%3E'">
+                        <img src="assets/Img/Bg4.png" alt="قصة عائلة محمد" loading="lazy">
                     </div>
                     <div class="story-article-content">
                         <h2 data-i18n="story-mohammed-title">قصة عائلة محمد: الأمل يعود</h2>
@@ -120,7 +123,7 @@
 
                 <article class="story-article fade-up">
                     <div class="story-article-image">
-                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600" alt="قصة سارة" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%237CB342%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eقصة سارة%3C/text%3E%3C/svg%3E'">
+                        <img src="assets/Img/Bg1.png" alt="قصة سارة" loading="lazy">
                     </div>
                     <div class="story-article-content">
                         <h2 data-i18n="story-sara-title">قصة سارة: من الطالبة إلى المعلمة</h2>
@@ -147,12 +150,13 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="footer-logo-img">
+                        <img src="assets/logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="footer-logo-img">
                     </div>
                     <p class="footer-mission" data-i18n="footer-mission">
                         مؤسسة خيرية تعمل على زرع الأمل وبناء الإنسان من خلال 
                         برامج متنوعة تركز على التعليم والصحة ودعم الأسر المحتاجة.
                     </p>
+                    <a href="admin.html" class="admin-link" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); text-decoration: none; transition: var(--transition);">إدارة</a>
                 </div>
                 <div class="footer-col">
                     <h4 class="footer-title" data-i18n="footer-quick-links">روابط سريعة</h4>
@@ -195,12 +199,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        function toggleLanguage() {
-            const currentLang = localStorage.getItem('lang') || 'ar';
-            const newLang = currentLang === 'ar' ? 'en' : 'ar';
-            setLanguage(newLang);
-        }
-    </script>
 </body>
 </html>

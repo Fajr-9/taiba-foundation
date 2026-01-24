@@ -1,0 +1,354 @@
+/* ============================================
+   ADMIN PANEL STYLES
+   ============================================ */
+
+.login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--teal-green) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.login-box {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+}
+
+.login-box h2 {
+    color: var(--primary-green);
+    margin-bottom: 0.5rem;
+    font-size: 1.75rem;
+}
+
+.login-box p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.login-box input {
+    padding: 1rem;
+    border: 2px solid var(--accent-green);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-family: var(--font-arabic);
+    transition: var(--transition);
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+}
+
+.login-error {
+    color: #dc3545;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    min-height: 1.5rem;
+}
+
+/* ADMIN PANEL */
+.admin-panel {
+    min-height: 100vh;
+    background: var(--bg-off-white);
+}
+
+.admin-header {
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+}
+
+.admin-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.admin-header h1 {
+    color: var(--primary-green);
+    font-size: 1.75rem;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* TABS */
+.admin-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--accent-green);
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-family: var(--font-arabic);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.tab-btn:hover {
+    color: var(--primary-green);
+}
+
+.tab-btn.active {
+    color: var(--primary-green);
+    border-bottom-color: var(--primary-green);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* PROJECTS LIST */
+.projects-list {
+    display: grid;
+    gap: 2rem;
+}
+
+.project-admin-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    gap: 2rem;
+    align-items: start;
+}
+
+.project-admin-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.project-admin-info {
+    flex: 1;
+}
+
+.project-admin-info h3 {
+    color: var(--primary-green);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.project-admin-info p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.project-admin-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.progress-input {
+    width: 100px;
+    padding: 0.5rem;
+    border: 2px solid var(--accent-green);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+}
+
+/* ADD PROJECT FORM */
+.add-project-form {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.add-project-form h2 {
+    color: var(--primary-green);
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--accent-green);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-family: var(--font-arabic);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.stats-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-family: var(--font-arabic);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--primary-green);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--teal-green);
+}
+
+.btn-secondary {
+    background: var(--secondary-green);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-green);
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary-green);
+    border: 2px solid var(--primary-green);
+}
+
+.btn-outline:hover {
+    background: var(--primary-green);
+    color: var(--white);
+}
+
+.btn-large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .project-admin-card {
+        grid-template-columns: 1fr;
+    }
+
+    .project-admin-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .admin-header-content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-actions {
+        flex-direction: column;
+    }
+
+    .admin-tabs {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        text-align: right;
+    }
+
+    .stats-inputs {
+        grid-template-columns: 1fr;
+    }
+}

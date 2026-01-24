@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
-    <script src="lang.js" defer></script>
+    <script src="lang.js"></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -20,8 +20,9 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="logo-img">
+                        <img src="assets/logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="logo-img">
                     </a>
+                    <a href="admin.html" class="admin-link" style="display: block; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; transition: var(--transition);">إدارة</a>
                 </div>
                 <nav class="nav">
                     <ul class="nav-list">
@@ -33,7 +34,7 @@
                         <li><a href="contact.html" class="nav-link" data-i18n="nav-contact">اتصل بنا</a></li>
                     </ul>
                 </nav>
-                <button id="lang-toggle" class="lang-toggle" onclick="toggleLanguage()">EN</button>
+                <button id="lang-toggle" class="lang-toggle">EN</button>
                 <button class="mobile-menu-toggle" data-i18n-aria="mobile-menu" aria-label="قائمة التنقل">
                     <span></span>
                     <span></span>
@@ -43,15 +44,17 @@
         </div>
     </header>
 
-    <!-- PAGE HERO -->
-    <section class="page-hero">
-        <div class="page-hero-image">
-            <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1600" alt="مشاريع قيد الإنجاز" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221600%22 height=%22400%22%3E%3Crect fill=%22%23EAF4EF%22 width=%221600%22 height=%22400%22/%3E%3C/svg%3E'">
-            <div class="page-hero-overlay"></div>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-image">
+            <div class="hero-image-overlay"></div>
+            <img src="assets/Img/Bg4.png" alt="مشاريع قيد الإنجاز" loading="lazy">
         </div>
-        <div class="container">
-            <h1 class="page-title fade-up" data-i18n="page-ongoing-title">مشاريع قيد الإنجاز</h1>
-            <p class="page-subtitle fade-up" data-i18n="ongoing-subtitle">مشاريعنا الحالية التي نعمل عليها</p>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title fade-up" data-i18n="page-ongoing-title">مشاريع قيد الإنجاز</h1>
+                <p class="hero-description fade-up" data-i18n="ongoing-subtitle">مشاريعنا الحالية التي نعمل عليها</p>
+            </div>
         </div>
     </section>
 
@@ -59,89 +62,7 @@
     <section class="page-content">
         <div class="container">
             <div class="projects-grid">
-                <div class="project-card fade-up">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600" alt="مكتبة عامة" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%232F7D5A%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eمكتبة عامة%3C/text%3E%3C/svg%3E'">
-                        <div class="project-badge ongoing" data-i18n="project-ongoing">قيد التنفيذ</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 data-i18n="project-library-title">مكتبة عامة</h3>
-                        <p class="project-date" data-i18n="project-library-date">2024 - جاري العمل</p>
-                        <p class="project-description" data-i18n="project-library-desc">
-                            بناء مكتبة عامة حديثة تحتوي على أكثر من 10,000 كتاب ومكان للقراءة 
-                            ومركز للأنشطة الثقافية. المشروع حالياً في مرحلة البناء.
-                        </p>
-                        <div class="project-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" data-progress="65"></div>
-                            </div>
-                            <span class="progress-text">65% <span data-i18n="project-library-progress">من الإنجاز</span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600" alt="برنامج التعليم" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%236FAF8E%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eبرنامج المنح الدراسية%3C/text%3E%3C/svg%3E'">
-                        <div class="project-badge ongoing" data-i18n="project-ongoing">قيد التنفيذ</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 data-i18n="project-scholarship-title">برنامج المنح الدراسية</h3>
-                        <p class="project-date" data-i18n="project-scholarship-date">2024 - جاري العمل</p>
-                        <p class="project-description" data-i18n="project-scholarship-desc">
-                            برنامج منح دراسية لتمكين 200 طالب وطالبة من إكمال تعليمهم الجامعي. 
-                            تم اختيار 120 طالب حتى الآن.
-                        </p>
-                        <div class="project-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" data-progress="60"></div>
-                            </div>
-                            <span class="progress-text">60% <span data-i18n="project-library-progress">من الإنجاز</span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600" alt="مركز صحي" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%231BA098%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eمركز صحي مجتمعي%3C/text%3E%3C/svg%3E'">
-                        <div class="project-badge ongoing" data-i18n="project-ongoing">قيد التنفيذ</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 data-i18n="project-health-center-title">مركز صحي مجتمعي</h3>
-                        <p class="project-date" data-i18n="project-health-center-date">2024 - جاري العمل</p>
-                        <p class="project-description" data-i18n="project-health-center-desc">
-                            إنشاء مركز صحي يوفر خدمات صحية شاملة للمجتمع المحلي. 
-                            المشروع في مرحلة التجهيز والتأثيث.
-                        </p>
-                        <div class="project-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" data-progress="45"></div>
-                            </div>
-                            <span class="progress-text">45% <span data-i18n="project-library-progress">من الإنجاز</span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-up">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600" alt="برنامج تمكين" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22%3E%3Crect fill=%22%237CB342%22 width=%22600%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23FFFFFF%22%3Eبرنامج تمكين المرأة%3C/text%3E%3C/svg%3E'">
-                        <div class="project-badge ongoing" data-i18n="project-ongoing">قيد التنفيذ</div>
-                    </div>
-                    <div class="project-content">
-                        <h3 data-i18n="project-women-title">برنامج تمكين المرأة</h3>
-                        <p class="project-date" data-i18n="project-women-date">2024 - جاري العمل</p>
-                        <p class="project-description" data-i18n="project-women-desc">
-                            برنامج شامل لتمكين 150 امرأة من خلال التدريب المهني وورش العمل 
-                            وبرامج ريادة الأعمال. تم تدريب 80 امرأة حتى الآن.
-                        </p>
-                        <div class="project-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" data-progress="53"></div>
-                            </div>
-                            <span class="progress-text">53% <span data-i18n="project-library-progress">من الإنجاز</span></span>
-                        </div>
-                    </div>
-                </div>
+                <!-- Projects will be loaded dynamically from projects.json -->
             </div>
         </div>
     </section>
@@ -152,12 +73,13 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="footer-logo-img">
+                        <img src="assets/logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="footer-logo-img">
                     </div>
                     <p class="footer-mission" data-i18n="footer-mission">
                         مؤسسة خيرية تعمل على زرع الأمل وبناء الإنسان من خلال 
                         برامج متنوعة تركز على التعليم والصحة ودعم الأسر المحتاجة.
                     </p>
+                    <a href="admin.html" class="admin-link" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); text-decoration: none; transition: var(--transition);">إدارة</a>
                 </div>
                 <div class="footer-col">
                     <h4 class="footer-title" data-i18n="footer-quick-links">روابط سريعة</h4>
@@ -200,12 +122,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        function toggleLanguage() {
-            const currentLang = localStorage.getItem('lang') || 'ar';
-            const newLang = currentLang === 'ar' ? 'en' : 'ar';
-            setLanguage(newLang);
-        }
-    </script>
+    <script src="projects.js"></script>
 </body>
 </html>

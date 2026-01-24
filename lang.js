@@ -1,4 +1,5 @@
 // Language translations
+// English translations kept for future use
 const translations = {
     ar: {
         // Header
@@ -84,8 +85,8 @@ const translations = {
         'contact-email': 'البريد الإلكتروني',
         'contact-phone': 'الهاتف',
         'contact-address': 'العنوان',
-        'contact-address-text': 'شارع الخير، بناء الأمل',
-        'contact-address-text-line2': 'المدينة، البلد',
+        'contact-address-text': 'سوريا-حماة',
+        'contact-address-text-line2': '',
         'contact-hours': 'ساعات العمل',
         'contact-hours-text': 'الأحد - الخميس: 9:00 ص - 5:00 م',
         'contact-hours-text-line2': 'الجمعة - السبت: مغلق',
@@ -252,8 +253,8 @@ const translations = {
         'contact-email': 'Email',
         'contact-phone': 'Phone',
         'contact-address': 'Address',
-        'contact-address-text': 'Charity Street, Hope Building',
-        'contact-address-text-line2': 'City, Country',
+        'contact-address-text': 'Syria-Hama',
+        'contact-address-text-line2': '',
         'contact-hours': 'Working Hours',
         'contact-hours-text': 'Sunday - Thursday: 9:00 AM - 5:00 PM',
         'contact-hours-text-line2': 'Friday - Saturday: Closed',
@@ -341,66 +342,78 @@ const translations = {
 // Language management
 let currentLang = localStorage.getItem('lang') || 'ar';
 
-function setLanguage(lang) {
+/**
+ * Get translation with safe fallback
+ * @param {string} lang - Language code
+ * @param {string} key - Translation key
+ * @returns {string} Translation or key if not found
+ */
+function getTranslation(lang, key) {
+    if (translations[lang] && translations[lang][key]) {
+        return translations[lang][key];
+    }
+    // Fallback to Arabic if translation not found
+    if (lang !== 'ar' && translations.ar && translations.ar[key]) {
+        return translations.ar[key];
+    }
+    // Return key if no translation found
+    return key;
+}
+
+/**
+ * Set language and update all i18n elements
+ * @param {string} lang - Language code ('ar' or 'en')
+ */
+function setLanguage(lang = 'ar') {
+    // Validate language
+    if (lang !== 'ar' && lang !== 'en') {
+        lang = 'ar';
+    }
+    
     currentLang = lang;
     localStorage.setItem('lang', lang);
+    
+    // Update HTML attributes (CSS will handle layout based on html[dir])
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-    
-    // Update body direction attribute and class
-    document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-    document.body.classList.remove('rtl', 'ltr');
-    document.body.classList.add(lang === 'ar' ? 'rtl' : 'ltr');
     
     // Update all elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
-        }
+        element.textContent = getTranslation(lang, key);
     });
     
     // Update placeholders
     document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
         const key = element.getAttribute('data-i18n-placeholder');
-        if (translations[lang] && translations[lang][key]) {
-            element.placeholder = translations[lang][key];
-        }
+        element.placeholder = getTranslation(lang, key);
     });
     
     // Update titles
     document.querySelectorAll('[data-i18n-title]').forEach(element => {
         const key = element.getAttribute('data-i18n-title');
-        if (translations[lang] && translations[lang][key]) {
-            element.title = translations[lang][key];
-        }
+        element.title = getTranslation(lang, key);
     });
     
     // Update alt text for images
     document.querySelectorAll('[data-i18n-alt]').forEach(element => {
         const key = element.getAttribute('data-i18n-alt');
-        if (translations[lang] && translations[lang][key]) {
-            element.alt = translations[lang][key];
-        }
+        element.alt = getTranslation(lang, key);
     });
     
     // Update aria-labels
     document.querySelectorAll('[data-i18n-aria]').forEach(element => {
         const key = element.getAttribute('data-i18n-aria');
-        if (translations[lang] && translations[lang][key]) {
-            element.setAttribute('aria-label', translations[lang][key]);
-        }
+        element.setAttribute('aria-label', getTranslation(lang, key));
     });
     
-    // Update innerHTML for elements that need HTML content (like <br> tags)
+    // Update innerHTML for elements that need HTML content
     document.querySelectorAll('[data-i18n-html]').forEach(element => {
         const key = element.getAttribute('data-i18n-html');
-        if (translations[lang] && translations[lang][key]) {
-            element.innerHTML = translations[lang][key];
-        }
+        element.innerHTML = getTranslation(lang, key);
     });
     
-    // Update language toggle button
+    // Update language toggle button text
     const langToggle = document.getElementById('lang-toggle');
     if (langToggle) {
         langToggle.textContent = lang === 'ar' ? 'EN' : 'AR';
@@ -408,8 +421,8 @@ function setLanguage(lang) {
     
     // Update page title
     const pageTitle = document.querySelector('title');
-    if (pageTitle && translations[lang] && translations[lang]['page-title']) {
-        pageTitle.textContent = translations[lang]['page-title'];
+    if (pageTitle) {
+        pageTitle.textContent = getTranslation(lang, 'page-title');
     }
     
     // Update meta description
@@ -417,24 +430,62 @@ function setLanguage(lang) {
     if (metaDesc) {
         if (metaDesc.hasAttribute('data-i18n')) {
             const key = metaDesc.getAttribute('data-i18n');
-            if (translations[lang] && translations[lang][key]) {
-                metaDesc.setAttribute('content', translations[lang][key]);
-            }
-        } else if (translations[lang] && translations[lang]['meta-description']) {
-            metaDesc.setAttribute('content', translations[lang]['meta-description']);
+            metaDesc.setAttribute('content', getTranslation(lang, key));
+        } else {
+            metaDesc.setAttribute('content', getTranslation(lang, 'meta-description'));
         }
     }
-    
-    // Force reflow to apply direction changes
-    document.body.offsetHeight;
 }
 
-// Initialize language on page load
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Toggle between Arabic and English
+ */
+function toggleLanguage() {
+    const newLang = currentLang === 'ar' ? 'en' : 'ar';
+    setLanguage(newLang);
+}
+
+// Make functions available globally
+window.setLanguage = setLanguage;
+window.toggleLanguage = toggleLanguage;
+
+// Initialize on page load
+function initializeLanguage() {
+    // Set dir attribute immediately to ensure CSS applies correctly
+    // This must happen before any rendering
+    const initialLang = localStorage.getItem('lang') || 'ar';
+    if (!document.documentElement.hasAttribute('dir')) {
+        document.documentElement.dir = initialLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = initialLang;
+    }
+    
+    // Then set language (which will update content and ensure dir is correct)
     setLanguage(currentLang);
-});
+    
+    // Add click event listener to language toggle button
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', toggleLanguage);
+    }
+}
+
+// Set dir immediately in head if possible (before DOMContentLoaded)
+(function() {
+    const initialLang = localStorage.getItem('lang') || 'ar';
+    if (document.documentElement) {
+        document.documentElement.dir = initialLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = initialLang;
+    }
+})();
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeLanguage);
+} else {
+    initializeLanguage();
+}
 
 // Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { translations, setLanguage, currentLang };
+    module.exports = { translations, setLanguage, toggleLanguage, currentLang };
 }

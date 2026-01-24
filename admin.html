@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="لوحة تحكم المشاريع - مؤسسة طيبة">
+    <title>لوحة التحكم - مؤسسة طيبة</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <div class="login-box">
+                <h2>لوحة التحكم</h2>
+                <p>أدخل كلمة المرور للوصول</p>
+                <form id="login-form">
+                    <input type="password" id="password-input" placeholder="كلمة المرور" required>
+                    <button type="submit" class="btn btn-primary">دخول</button>
+                </form>
+                <p class="login-error" id="login-error"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div id="admin-panel" class="admin-panel" style="display: none;">
+        <header class="admin-header">
+            <div class="container">
+                <div class="admin-header-content">
+                    <h1>لوحة تحكم المشاريع</h1>
+                    <div class="admin-actions">
+                        <div id="status-message" style="display: none; padding: 0.5rem 1rem; background: var(--accent-green); border-radius: var(--radius-sm); color: var(--primary-green); font-weight: 600;"></div>
+                        <a href="index.html" class="btn btn-outline">العودة للموقع</a>
+                        <button id="logout-btn" class="btn btn-danger">تسجيل الخروج</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="container">
+                <!-- TABS -->
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="ongoing">مشاريع قيد التنفيذ</button>
+                    <button class="tab-btn" data-tab="completed">مشاريع منجزة</button>
+                    <button class="tab-btn" data-tab="add">إضافة مشروع جديد</button>
+                    <button class="tab-btn" data-tab="settings">الإعدادات</button>
+                </div>
+
+                <!-- ONGOING PROJECTS TAB -->
+                <div id="tab-ongoing" class="tab-content active">
+                    <div class="projects-list" id="ongoing-list">
+                        <!-- Projects will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- COMPLETED PROJECTS TAB -->
+                <div id="tab-completed" class="tab-content">
+                    <div class="projects-list" id="completed-list">
+                        <!-- Projects will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- ADD PROJECT TAB -->
+                <div id="tab-add" class="tab-content">
+                    <div class="add-project-form">
+                        <h2>إضافة مشروع جديد</h2>
+                        <form id="add-project-form">
+                            <div class="form-group">
+                                <label>نوع المشروع</label>
+                                <select id="project-type" required>
+                                    <option value="ongoing">قيد التنفيذ</option>
+                                    <option value="completed">منجز</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>عنوان المشروع</label>
+                                <input type="text" id="project-title" required>
+                            </div>
+                            <div class="form-group">
+                                <label>التاريخ</label>
+                                <input type="text" id="project-date" placeholder="مثال: 2024 - جاري العمل" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الوصف</label>
+                                <textarea id="project-description" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>رابط الصورة</label>
+                                <input type="text" id="project-image" placeholder="assets/Img/Bg1.png" required>
+                            </div>
+                            <div class="form-group" id="progress-group">
+                                <label>نسبة التقدم (%)</label>
+                                <input type="number" id="project-progress" min="0" max="100" value="0">
+                            </div>
+                            <div class="form-group" id="stats-group" style="display: none;">
+                                <label>الإحصائيات (اختياري)</label>
+                                <div class="stats-inputs">
+                                    <input type="text" id="stat1-label" placeholder="اسم الإحصائية الأولى">
+                                    <input type="text" id="stat1-value" placeholder="القيمة">
+                                    <input type="text" id="stat2-label" placeholder="اسم الإحصائية الثانية">
+                                    <input type="text" id="stat2-value" placeholder="القيمة">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-large">إضافة المشروع</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- SETTINGS TAB -->
+                <div id="tab-settings" class="tab-content">
+                    <div class="add-project-form">
+                        <h2>إعدادات GitHub</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                            يجب إعداد GitHub API Token أولاً. راجع ملف GITHUB_SETUP.md للتعليمات.
+                        </p>
+                        <form id="settings-form">
+                            <div class="form-group">
+                                <label>اسم المستخدم في GitHub (Username)</label>
+                                <input type="text" id="github-username" placeholder="مثال: yourusername">
+                            </div>
+                            <div class="form-group">
+                                <label>اسم الـ Repository</label>
+                                <input type="text" id="github-repo" placeholder="مثال: tayba-website">
+                            </div>
+                            <div class="form-group">
+                                <label>GitHub Personal Access Token</label>
+                                <input type="password" id="github-token" placeholder="ghp_xxxxxxxxxxxx">
+                                <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">
+                                    ⚠️ هذا الـ Token يُحفظ محلياً في المتصفح فقط
+                                </small>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-large">حفظ الإعدادات</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

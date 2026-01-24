@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="styles.css">
-    <script src="lang.js" defer></script>
+    <script src="lang.js"></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -20,8 +20,9 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="logo-img">
+                        <img src="assets/logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="logo-img">
                     </a>
+                    <a href="admin.html" class="admin-link" style="display: block; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; transition: var(--transition);">إدارة</a>
                 </div>
                 <nav class="nav">
                     <ul class="nav-list">
@@ -33,7 +34,7 @@
                         <li><a href="contact.html" class="nav-link active" data-i18n="nav-contact">اتصل بنا</a></li>
                     </ul>
                 </nav>
-                <button id="lang-toggle" class="lang-toggle" onclick="toggleLanguage()">EN</button>
+                <button id="lang-toggle" class="lang-toggle">EN</button>
                 <button class="mobile-menu-toggle" data-i18n-aria="mobile-menu" aria-label="قائمة التنقل">
                     <span></span>
                     <span></span>
@@ -43,15 +44,17 @@
         </div>
     </header>
 
-    <!-- PAGE HERO -->
-    <section class="page-hero">
-        <div class="page-hero-image">
-            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1600" alt="اتصل بنا" loading="lazy" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221600%22 height=%22400%22%3E%3Crect fill=%22%23EAF4EF%22 width=%221600%22 height=%22400%22/%3E%3C/svg%3E'">
-            <div class="page-hero-overlay"></div>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-image">
+            <div class="hero-image-overlay"></div>
+            <img src="assets/Img/Bg3.png" alt="اتصل بنا" loading="lazy">
         </div>
-        <div class="container">
-            <h1 class="page-title fade-up" data-i18n="page-contact-title">اتصل بنا</h1>
-            <p class="page-subtitle fade-up" data-i18n="contact-subtitle">نحن هنا للإجابة على استفساراتك</p>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title fade-up" data-i18n="page-contact-title">اتصل بنا</h1>
+                <p class="hero-description fade-up" data-i18n="contact-subtitle">نحن هنا للإجابة على استفساراتك</p>
+            </div>
         </div>
     </section>
 
@@ -72,14 +75,14 @@
                         <div class="contact-icon">📞</div>
                         <div>
                             <h3 data-i18n="contact-phone">الهاتف</h3>
-                            <p>+123 456 7890</p>
+                            <p>+963985178373</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">📍</div>
                         <div>
                             <h3 data-i18n="contact-address">العنوان</h3>
-                            <p><span data-i18n="contact-address-text">شارع الخير، بناء الأمل</span><br><span data-i18n="contact-address-text-line2">المدينة، البلد</span></p>
+                            <p><span data-i18n="contact-address-text">شارع الخير، بناء الأمل</span></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -123,12 +126,13 @@
             <div class="footer-content">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="footer-logo-img">
+                        <img src="assets/logo.png" data-i18n-alt="img-logo-alt" alt="مؤسسة طيبة الخير للأعمال الإنسانية" class="footer-logo-img">
                     </div>
                     <p class="footer-mission" data-i18n="footer-mission">
                         مؤسسة خيرية تعمل على زرع الأمل وبناء الإنسان من خلال 
                         برامج متنوعة تركز على التعليم والصحة ودعم الأسر المحتاجة.
                     </p>
+                    <a href="admin.html" class="admin-link" style="display: inline-block; margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); text-decoration: none; transition: var(--transition);">إدارة</a>
                 </div>
                 <div class="footer-col">
                     <h4 class="footer-title" data-i18n="footer-quick-links">روابط سريعة</h4>
@@ -172,12 +176,6 @@
 
     <script src="script.js"></script>
     <script>
-        function toggleLanguage() {
-            const currentLang = localStorage.getItem('lang') || 'ar';
-            const newLang = currentLang === 'ar' ? 'en' : 'ar';
-            setLanguage(newLang);
-        }
-        
         // Form submission
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
             e.preventDefault();

@@ -98,15 +98,22 @@
                             </div>
                             <div class="form-group" id="progress-group">
                                 <label>نسبة التقدم (%)</label>
-                                <input type="number" id="project-progress" min="0" max="100" value="0">
+                                <input type="text" id="project-progress" min="0" max="100" value="0" 
+                                       data-numeric-value="0"
+                                       oninput="this.setAttribute('data-numeric-value', parseNumber(this.value) || 0); this.value = formatNumber(parseNumber(this.value) || 0);"
+                                       style="direction: rtl; text-align: right;">
                             </div>
                             <div class="form-group" id="stats-group" style="display: none;">
                                 <label>الإحصائيات (اختياري)</label>
                                 <div class="stats-inputs">
                                     <input type="text" id="stat1-label" placeholder="اسم الإحصائية الأولى">
-                                    <input type="text" id="stat1-value" placeholder="القيمة">
+                                    <input type="text" id="stat1-value" placeholder="القيمة" 
+                                           oninput="if (isArabic()) { this.value = formatNumber(parseNumber(this.value) || this.value); }"
+                                           style="direction: rtl; text-align: right;">
                                     <input type="text" id="stat2-label" placeholder="اسم الإحصائية الثانية">
-                                    <input type="text" id="stat2-value" placeholder="القيمة">
+                                    <input type="text" id="stat2-value" placeholder="القيمة"
+                                           oninput="if (isArabic()) { this.value = formatNumber(parseNumber(this.value) || this.value); }"
+                                           style="direction: rtl; text-align: right;">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-large">إضافة المشروع</button>

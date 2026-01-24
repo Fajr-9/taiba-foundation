@@ -435,6 +435,10 @@ function setLanguage(lang = 'ar') {
             metaDesc.setAttribute('content', getTranslation(lang, 'meta-description'));
         }
     }
+    
+    // Dispatch language change event
+    const event = new CustomEvent('languageChanged', { detail: { lang: lang } });
+    document.dispatchEvent(event);
 }
 
 /**

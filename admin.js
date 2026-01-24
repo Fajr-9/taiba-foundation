@@ -18,6 +18,54 @@ let projects = {
     completed: []
 };
 
+// ============================================
+// NUMBER CONVERSION (Arabic/English)
+// ============================================
+
+// Arabic digits: ٠١٢٣٤٥٦٧٨٩
+const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+const englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+// Check if current language is Arabic
+function isArabic() {
+    return document.documentElement.dir === 'rtl' || 
+           document.documentElement.lang === 'ar' ||
+           document.querySelector('html[dir="rtl"]') !== null;
+}
+
+// Convert number to Arabic digits
+function toArabicDigits(num) {
+    if (typeof num === 'number') {
+        num = num.toString();
+    }
+    return num.replace(/\d/g, (digit) => arabicDigits[parseInt(digit)]);
+}
+
+// Convert number to English digits
+function toEnglishDigits(num) {
+    if (typeof num === 'number') {
+        num = num.toString();
+    }
+    return num.replace(/[٠١٢٣٤٥٦٧٨٩]/g, (digit) => {
+        const index = arabicDigits.indexOf(digit);
+        return index !== -1 ? englishDigits[index] : digit;
+    });
+}
+
+// Convert number based on current language
+function formatNumber(num) {
+    if (num === null || num === undefined) return '';
+    const numStr = num.toString();
+    return isArabic() ? toArabicDigits(numStr) : toEnglishDigits(numStr);
+}
+
+// Parse number from Arabic or English digits
+function parseNumber(str) {
+    if (!str) return 0;
+    const englishStr = toEnglishDigits(str);
+    return parseInt(englishStr) || 0;
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
@@ -317,10 +365,15 @@ function createProjectCard(project, type) {
     if (type === 'ongoing') {
         const progressDiv = document.createElement('div');
         progressDiv.style.marginTop = '1rem';
+        const progressValue = project.progress || 0;
+        const displayProgress = formatNumber(progressValue);
         progressDiv.innerHTML = `
             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">نسبة التقدم:</label>
-            <input type="number" class="progress-input" value="${project.progress || 0}" min="0" max="100" 
-                   onchange="updateProgress('${project.id}', this.value)">
+            <input type="text" class="progress-input" value="${displayProgress}" min="0" max="100" 
+                   data-numeric-value="${progressValue}"
+                   onchange="updateProgress('${project.id}', this.value)"
+                   oninput="this.setAttribute('data-numeric-value', parseNumber(this.value) || 0)"
+                   style="direction: ${isArabic() ? 'rtl' : 'ltr'}; text-align: ${isArabic() ? 'right' : 'left'};">
             <span style="margin-right: 0.5rem;">%</span>
         `;
         info.appendChild(progressDiv);
@@ -336,7 +389,9 @@ function createProjectCard(project, type) {
             stat.style.background = 'var(--accent-green)';
             stat.style.padding = '0.5rem 1rem';
             stat.style.borderRadius = 'var(--radius-sm)';
-            stat.innerHTML = `<strong>${value}</strong> <span style="color: var(--text-secondary);">${key}</span>`;
+            // Convert numbers in stats value to Arabic/English
+            const formattedValue = formatNumber(value);
+            stat.innerHTML = `<strong>${formattedValue}</strong> <span style="color: var(--text-secondary);">${key}</span>`;
             statsDiv.appendChild(stat);
         });
         
@@ -386,7 +441,8 @@ function createProjectCard(project, type) {
 async function updateProgress(id, progress) {
     const project = projects.ongoing.find(p => p.id === id);
     if (project) {
-        project.progress = parseInt(progress);
+        // Parse number from Arabic or English digits
+        project.progress = parseNumber(progress);
         await saveProjects();
     }
 }
@@ -452,16 +508,21 @@ function editProject(id, type) {
     document.getElementById('project-image').value = project.image;
     
     if (type === 'ongoing') {
-        document.getElementById('project-progress').value = project.progress || 0;
+        const progressValue = project.progress || 0;
+        const progressInput = document.getElementById('project-progress');
+        progressInput.value = formatNumber(progressValue);
+        progressInput.setAttribute('data-numeric-value', progressValue);
     } else if (project.stats) {
         const statsEntries = Object.entries(project.stats);
         if (statsEntries.length > 0) {
             document.getElementById('stat1-label').value = statsEntries[0][0];
-            document.getElementById('stat1-value').value = statsEntries[0][1];
+            const stat1Value = statsEntries[0][1];
+            document.getElementById('stat1-value').value = formatNumber(stat1Value);
         }
         if (statsEntries.length > 1) {
             document.getElementById('stat2-label').value = statsEntries[1][0];
-            document.getElementById('stat2-value').value = statsEntries[1][1];
+            const stat2Value = statsEntries[1][1];
+            document.getElementById('stat2-value').value = formatNumber(stat2Value);
         }
     }
     
@@ -495,12 +556,22 @@ document.getElementById('add-project-form').addEventListener('submit', async (e)
     const type = document.getElementById('project-type').value;
     
     if (type === 'ongoing') {
-        projectData.progress = parseInt(document.getElementById('project-progress').value) || 0;
+        const progressInput = document.getElementById('project-progress');
+        const progressValue = progressInput.getAttribute('data-numeric-value') || progressInput.value;
+        projectData.progress = parseNumber(progressValue);
     } else {
         const stat1Label = document.getElementById('stat1-label').value;
-        const stat1Value = document.getElementById('stat1-value').value;
+        let stat1Value = document.getElementById('stat1-value').value;
         const stat2Label = document.getElementById('stat2-label').value;
-        const stat2Value = document.getElementById('stat2-value').value;
+        let stat2Value = document.getElementById('stat2-value').value;
+        
+        // Convert Arabic digits to English for storage (keep original if not a number)
+        if (stat1Value && !isNaN(parseNumber(stat1Value))) {
+            stat1Value = parseNumber(stat1Value).toString();
+        }
+        if (stat2Value && !isNaN(parseNumber(stat2Value))) {
+            stat2Value = parseNumber(stat2Value).toString();
+        }
         
         projectData.stats = {};
         if (stat1Label && stat1Value) {
@@ -586,6 +657,11 @@ document.getElementById('project-type').addEventListener('change', (e) => {
         statsGroup.style.display = 'block';
     }
 });
+
+// Make functions globally available for inline event handlers
+window.formatNumber = formatNumber;
+window.parseNumber = parseNumber;
+window.isArabic = isArabic;
 
 // ============================================
 // SETUP EVENT LISTENERS

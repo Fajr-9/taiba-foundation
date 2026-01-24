@@ -259,6 +259,143 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // INITIAL FADE-IN FOR HERO
 // ============================================
 
+// ============================================
+// CODE PROTECTION - منع الوصول لمصدر الكود
+// ============================================
+
+// منع القائمة اليمين (Right-click)
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    return false;
+});
+
+// منع اختصارات لوحة المفاتيح
+document.addEventListener('keydown', (e) => {
+    // F12 - DevTools
+    if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+I - DevTools
+    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+J - Console
+    if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+C - Inspect Element
+    if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+U - View Source
+    if (e.ctrlKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+S - Save Page
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+P - Print (يمكن إزالته إذا أردت)
+    if (e.ctrlKey && e.key === 'p') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+A - Select All (يمكن إزالته إذا أردت)
+    if (e.ctrlKey && e.key === 'a') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// منع اختصارات الماوس
+document.addEventListener('selectstart', (e) => {
+    e.preventDefault();
+    return false;
+});
+
+// منع السحب والإفلات
+document.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+    return false;
+});
+
+// منع نسخ النص (اختياري - يمكن إزالته إذا أردت)
+document.addEventListener('copy', (e) => {
+    e.preventDefault();
+    return false;
+});
+
+// منع لصق النص (اختياري - يمكن إزالته إذا أردت)
+document.addEventListener('paste', (e) => {
+    e.preventDefault();
+    return false;
+});
+
+// منع فتح DevTools من خلال طرق أخرى
+(function() {
+    let devtools = {open: false};
+    const element = new Image();
+    Object.defineProperty(element, 'id', {
+        get: function() {
+            devtools.open = true;
+        }
+    });
+    setInterval(function() {
+        devtools.open = false;
+        console.clear();
+        console.log(element);
+        if (devtools.open) {
+            // يمكن إضافة رد فعل هنا مثل إعادة توجيه
+            window.location.href = 'about:blank';
+        }
+    }, 1000);
+})();
+
+// منع فحص العناصر من خلال اختصارات أخرى
+document.addEventListener('keydown', (e) => {
+    // Ctrl+Shift+Delete
+    if (e.ctrlKey && e.shiftKey && e.key === 'Delete') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+K (Firefox DevTools)
+    if (e.ctrlKey && e.shiftKey && e.key === 'K') {
+        e.preventDefault();
+        return false;
+    }
+    
+    // Ctrl+Shift+E (Chrome DevTools)
+    if (e.ctrlKey && e.shiftKey && e.key === 'E') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// منع فتح DevTools من خلال قائمة المتصفح
+window.addEventListener('beforeunload', (e) => {
+    // يمكن إضافة رسالة تحذيرية
+});
+
+// إخفاء الكود من خلال منع عرض الصفحة المصدر
+if (window.location.protocol === 'file:') {
+    // منع فتح الملفات المحلية
+    window.location.href = 'about:blank';
+}
+
 window.addEventListener('load', () => {
     const heroElements = document.querySelectorAll('.hero .fade-up');
     heroElements.forEach((el, index) => {

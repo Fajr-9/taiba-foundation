@@ -95,21 +95,13 @@ function animateCounter(element, target, duration = 2000) {
 }
 
 // ============================================
-// NUMBER CONVERSION (Arabic/English)
+// تحويل الأرقام للعربية
 // ============================================
 
-// Arabic digits: ٠١٢٣٤٥٦٧٨٩
+// الأرقام العربية: ٠١٢٣٤٥٦٧٨٩
 const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-const englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-// Check if current language is Arabic
-function isArabic() {
-    return document.documentElement.dir === 'rtl' || 
-           document.documentElement.lang === 'ar' ||
-           document.querySelector('html[dir="rtl"]') !== null;
-}
-
-// Convert number to Arabic digits
+// تحويل الأرقام للعربية
 function toArabicDigits(num) {
     if (typeof num === 'number') {
         num = num.toString();
@@ -117,25 +109,11 @@ function toArabicDigits(num) {
     return num.replace(/\d/g, (digit) => arabicDigits[parseInt(digit)]);
 }
 
-// Convert number to English digits
-function toEnglishDigits(num) {
-    if (typeof num === 'number') {
-        num = num.toString();
-    }
-    return num.replace(/[٠١٢٣٤٥٦٧٨٩]/g, (digit) => {
-        const index = arabicDigits.indexOf(digit);
-        return index !== -1 ? englishDigits[index] : digit;
-    });
-}
-
-// Make functions globally available
+// جعل الدوال متاحة عالمياً
 window.arabicDigits = arabicDigits;
-window.englishDigits = englishDigits;
-window.isArabic = isArabic;
 window.toArabicDigits = toArabicDigits;
-window.toEnglishDigits = toEnglishDigits;
 
-// Format number with + sign and locale formatting
+// تنسيق الأرقام مع علامة +
 function formatNumber(num) {
     let formatted;
     if (num >= 1000) {
@@ -144,12 +122,8 @@ function formatNumber(num) {
         formatted = num.toString();
     }
     
-    // Convert to Arabic/English digits based on language
-    if (isArabic()) {
-        formatted = toArabicDigits(formatted);
-    } else {
-        formatted = toEnglishDigits(formatted);
-    }
+    // تحويل للأرقام العربية
+    formatted = toArabicDigits(formatted);
     
     return '+' + formatted;
 }
@@ -176,37 +150,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const counters = document.querySelectorAll('.stat-number');
     counters.forEach(counter => counterObserver.observe(counter));
     
-    // Convert progress percentages to Arabic/English digits
+    // تحويل نسب التقدم للأرقام العربية
     convertProgressNumbers();
 });
 
-// Convert progress text numbers to Arabic/English
+// تحويل أرقام نسبة التقدم للعربية
 function convertProgressNumbers() {
     const progressTexts = document.querySelectorAll('.progress-text');
     progressTexts.forEach(text => {
         const originalText = text.textContent;
-        // Extract percentage number (e.g., "75%" or "75% من الهدف")
         const match = originalText.match(/(\d+)%/);
         if (match) {
             const number = parseInt(match[1]);
-            const formattedNumber = isArabic() ? toArabicDigits(number) : toEnglishDigits(number);
+            const formattedNumber = toArabicDigits(number);
             text.textContent = originalText.replace(/\d+%/, formattedNumber + '%');
         }
     });
 }
-
-// Run conversion when language changes
-document.addEventListener('languageChanged', () => {
-    convertProgressNumbers();
-    // Re-animate counters with new language
-    const counters = document.querySelectorAll('.stat-number');
-    counters.forEach(counter => {
-        if (counter.classList.contains('animated')) {
-            const target = parseInt(counter.getAttribute('data-target'));
-            counter.textContent = formatNumber(target);
-        }
-    });
-});
 
 // ============================================
 // MOBILE MENU TOGGLE

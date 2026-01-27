@@ -9,22 +9,20 @@ let allProjects = {
 };
 
 // ============================================
-// NUMBER CONVERSION (Arabic/English)
-// Uses functions from script.js (loaded before this file)
+// تنسيق الأرقام بالعربية
 // ============================================
 
-// Format number without + sign (for projects)
-// Uses toArabicDigits and toEnglishDigits from script.js
+// تنسيق الأرقام للعرض (بالعربية)
 function formatProjectNumber(num) {
     if (num === null || num === undefined) return '';
     const numStr = num.toString();
     
-    // Use functions from script.js if available
-    if (typeof window.toArabicDigits === 'function' && typeof window.toEnglishDigits === 'function' && typeof window.isArabic === 'function') {
-        return window.isArabic() ? window.toArabicDigits(numStr) : window.toEnglishDigits(numStr);
+    // استخدام الدالة من script.js
+    if (typeof window.toArabicDigits === 'function') {
+        return window.toArabicDigits(numStr);
     }
     
-    // Fallback if script.js not loaded
+    // في حال عدم توفر الدالة
     return numStr;
 }
 

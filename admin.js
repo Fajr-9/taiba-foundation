@@ -19,21 +19,14 @@ let projects = {
 };
 
 // ============================================
-// NUMBER CONVERSION (Arabic/English)
+// تحويل الأرقام
 // ============================================
 
-// Arabic digits: ٠١٢٣٤٥٦٧٨٩
+// الأرقام العربية: ٠١٢٣٤٥٦٧٨٩
 const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
 const englishDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-// Check if current language is Arabic
-function isArabic() {
-    return document.documentElement.dir === 'rtl' || 
-           document.documentElement.lang === 'ar' ||
-           document.querySelector('html[dir="rtl"]') !== null;
-}
-
-// Convert number to Arabic digits
+// تحويل للأرقام العربية
 function toArabicDigits(num) {
     if (typeof num === 'number') {
         num = num.toString();
@@ -41,7 +34,7 @@ function toArabicDigits(num) {
     return num.replace(/\d/g, (digit) => arabicDigits[parseInt(digit)]);
 }
 
-// Convert number to English digits
+// تحويل للأرقام الإنجليزية (للتخزين)
 function toEnglishDigits(num) {
     if (typeof num === 'number') {
         num = num.toString();
@@ -52,14 +45,14 @@ function toEnglishDigits(num) {
     });
 }
 
-// Convert number based on current language
+// تنسيق الأرقام للعرض (بالعربية دائماً)
 function formatNumber(num) {
     if (num === null || num === undefined) return '';
     const numStr = num.toString();
-    return isArabic() ? toArabicDigits(numStr) : toEnglishDigits(numStr);
+    return toArabicDigits(numStr);
 }
 
-// Parse number from Arabic or English digits
+// تحليل الأرقام من العربية للإنجليزية (للتخزين)
 function parseNumber(str) {
     if (!str) return 0;
     const englishStr = toEnglishDigits(str);
@@ -373,7 +366,7 @@ function createProjectCard(project, type) {
                    data-numeric-value="${progressValue}"
                    onchange="updateProgress('${project.id}', this.value)"
                    oninput="this.setAttribute('data-numeric-value', parseNumber(this.value) || 0)"
-                   style="direction: ${isArabic() ? 'rtl' : 'ltr'}; text-align: ${isArabic() ? 'right' : 'left'};">
+                   style="direction: rtl; text-align: right;">
             <span style="margin-right: 0.5rem;">%</span>
         `;
         info.appendChild(progressDiv);
@@ -389,7 +382,7 @@ function createProjectCard(project, type) {
             stat.style.background = 'var(--accent-green)';
             stat.style.padding = '0.5rem 1rem';
             stat.style.borderRadius = 'var(--radius-sm)';
-            // Convert numbers in stats value to Arabic/English
+            // تحويل الأرقام في الإحصائيات للعربية
             const formattedValue = formatNumber(value);
             stat.innerHTML = `<strong>${formattedValue}</strong> <span style="color: var(--text-secondary);">${key}</span>`;
             statsDiv.appendChild(stat);
@@ -441,7 +434,7 @@ function createProjectCard(project, type) {
 async function updateProgress(id, progress) {
     const project = projects.ongoing.find(p => p.id === id);
     if (project) {
-        // Parse number from Arabic or English digits
+        // تحليل الأرقام من العربية للإنجليزية
         project.progress = parseNumber(progress);
         await saveProjects();
     }
@@ -565,7 +558,7 @@ document.getElementById('add-project-form').addEventListener('submit', async (e)
         const stat2Label = document.getElementById('stat2-label').value;
         let stat2Value = document.getElementById('stat2-value').value;
         
-        // Convert Arabic digits to English for storage (keep original if not a number)
+        // تحويل الأرقام العربية للإنجليزية للتخزين
         if (stat1Value && !isNaN(parseNumber(stat1Value))) {
             stat1Value = parseNumber(stat1Value).toString();
         }
@@ -661,7 +654,6 @@ document.getElementById('project-type').addEventListener('change', (e) => {
 // Make functions globally available for inline event handlers
 window.formatNumber = formatNumber;
 window.parseNumber = parseNumber;
-window.isArabic = isArabic;
 
 // ============================================
 // SETUP EVENT LISTENERS

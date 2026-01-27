@@ -47,6 +47,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -56,19 +57,13 @@ body {
     color: var(--text-primary);
     background-color: var(--bg-off-white);
     overflow-x: hidden;
+    max-width: 100%;
 }
 
-/* RTL/LTR direction controlled by html[dir] */
-html[dir="rtl"] body {
+/* Arabic RTL direction */
+body {
     direction: rtl;
     text-align: right;
-    font-family: var(--font-arabic);
-}
-
-html[dir="ltr"] body {
-    direction: ltr;
-    text-align: left;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 img {
@@ -116,6 +111,8 @@ ul {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* ============================================
@@ -175,7 +172,7 @@ ul {
     width: 100%;
 }
 
-/* Logo base styles */
+/* Logo base styles - always on the right in RTL */
 .logo {
     display: flex;
     align-items: center;
@@ -183,31 +180,22 @@ ul {
     background: transparent;
     border-radius: var(--radius-md);
     transition: var(--transition);
-    order: 1;
 }
 
 .header.scrolled .logo {
     background: transparent;
 }
 
+/* Navigation - centered (hidden on mobile) */
 .nav {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     justify-content: center;
+    flex: 1;
 }
 
-/* Logo always on right */
-.logo {
-    margin-right: 0;
-    margin-left: auto;
-}
-
-/* Mobile menu toggle always on left */
+/* Mobile menu toggle - hidden on desktop */
 .mobile-menu-toggle {
-    margin-left: 0;
-    margin-right: auto;
+    display: none;
 }
 
 .logo-img {
@@ -275,7 +263,6 @@ ul {
     border: none;
     cursor: pointer;
     padding: var(--spacing-xs);
-    order: -1;
 }
 
 .mobile-menu-toggle span {
@@ -372,14 +359,7 @@ ul {
     min-height: 100vh;
 }
 
-body[dir="ltr"] .hero-container,
-body.ltr .hero-container {
-    direction: ltr;
-    justify-content: flex-start;
-}
-
-body[dir="rtl"] .hero-container,
-body.rtl .hero-container {
+.hero-container {
     direction: rtl;
     justify-content: flex-end;
 }
@@ -788,9 +768,7 @@ img {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
+    width: 100%;
     padding-top: calc(80px + var(--spacing-xxl));
 }
 
@@ -1192,24 +1170,85 @@ img {
         -webkit-backdrop-filter: blur(20px) !important;
     }
     
+    /* Header layout on mobile: logo right, toggle left */
+    .header-content {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        direction: ltr !important; /* Force LTR for header layout only */
+    }
+    
+    /* Logo on right side */
+    .logo {
+        order: 2 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Toggle on left side */
+    .mobile-menu-toggle {
+        order: 1 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Nav hidden */
+    .nav {
+        order: 3 !important;
+    }
+    
+    /* Hero section - المحتوى فوق الصورة */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
     .hero-container {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: calc(70px + var(--spacing-md)) var(--spacing-sm) var(--spacing-md);
+        min-height: 100vh;
     }
     
     .hero-image {
-        height: 350px;
-        order: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .hero-content {
+        text-align: center;
+        max-width: 100%;
+        padding: var(--spacing-md);
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: var(--radius-md);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
     }
     
     .hero-title,
     .hero-content h1 {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-sm);
     }
     
     .hero-description {
         font-size: 0.85rem;
         line-height: 1.6;
+        max-width: 100%;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .hero-cta {
+        justify-content: center;
     }
     
     .nav {
@@ -1217,7 +1256,7 @@ img {
         top: 100%;
         right: 0;
         left: 0;
-        transform: none;
+        flex: none;
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
@@ -1243,15 +1282,15 @@ img {
         display: block;
         width: 100%;
         padding: 0.6rem var(--spacing-sm);
-        color: var(--text-primary);
-        text-shadow: none;
+        color: #000000 !important;
+        text-shadow: none !important;
         border-radius: var(--radius-sm);
         font-size: 0.9rem;
     }
     
     .nav-link:hover {
         background: var(--accent-green);
-        color: var(--primary-green);
+        color: var(--primary-green) !important;
     }
     
     .mobile-menu-toggle {
@@ -1302,10 +1341,15 @@ img {
     :root {
         --spacing-xl: 2rem;
         --spacing-xxl: 3rem;
+        --spacing-md: 1rem;
     }
     
     body {
         font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-sm);
     }
     
     .hero-title,
@@ -1492,13 +1536,23 @@ img {
         min-height: 100vh;
     }
     
+    .hero-container {
+        padding: calc(60px + var(--spacing-sm)) var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .hero-content {
+        padding: var(--spacing-sm);
+    }
+    
     .hero-title,
     .hero-content h1 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-xs);
     }
     
     .hero-description {
         font-size: 0.75rem;
+        margin-bottom: var(--spacing-sm);
     }
     
     .section-title {

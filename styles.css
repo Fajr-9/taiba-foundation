@@ -1178,6 +1178,20 @@ img {
    ============================================ */
 
 @media (max-width: 968px) {
+    /* Header transparent background on mobile */
+    .header {
+        background: rgba(255, 255, 255, 0.2) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .header.scrolled {
+        background: rgba(255, 255, 255, 0.9) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+    }
+    
     .hero-container {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
